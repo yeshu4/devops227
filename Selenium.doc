@@ -1,0 +1,183 @@
+Selenium
+sudo wget https://download.java.net/java/GA/jdk14.0.2/205943a0976c4ed48cb16f1043c5c647/12/GPL/openjdk-14.0.2_linux-x64_bin.tar.gz
+sudo tar zxf openjdk-14.0.2_linux-x64_bin.tar.gz
+
+sudo mv ./jdk-14.0.2/ /opt/
+sudo tee /etc/profile.d/jdk14env.sh <<EOF
+export JAVA_HOME=/opt/jdk-14.0.2
+export PATH=\$PATH:\$JAVA_HOME/bin
+EOF
+source /etc/profile.d/jdk14env.sh
+java --version
+
+sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+ sudo apt install ./google-chrome-stable_current_amd64.deb
+ sudo wget https://chromedriver.storage.googleapis.com/84.0.4147.30/chromedriver_linux64.zip
+ unzip chromedriver_linux64.zip
+
+
+ package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.TestListenerAdapter;
+import org.testng.TestNG;
+import org.testng.annotations.Test;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+@Test
+public class test {
+
+	WebDriver driver;
+	public void hello() {
+	System.setProperty("webdriver.chrome.driver", "D://chromedriver.exe");///home/ubuntu/chromedriver
+	ChromeOptions options =new ChromeOptions();
+	options.addArguments("--headless");
+
+	driver = new ChromeDriver(options);  
+	driver.get("https://www.google.com/");	
+	
+
+	driver.findElement(By.xpath("/html/body")).isDisplayed();
+
+	
+	
+}
+public static void main(String[] args) {
+TestListenerAdapter adap = new TestListenerAdapter();
+TestNG testng = new TestNG();
+testng.setTestClasses(new Class[] {test.class});
+testng.addListener(adap);
+testng.run();
+
+}
+
+
+
+}
+
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>selenium</groupId>
+  <artifactId>test</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>test</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>3.141.59</version>
+     </dependency>
+       <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-server</artifactId>
+      <version>3.141.59</version>
+     </dependency>
+        <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-api</artifactId>
+      <version>3.141.59</version>
+     </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-chrome-driver</artifactId>
+      <version>3.141.59</version>
+     </dependency>
+    <dependency>
+    		<groupId>org.testng</groupId>
+    		<artifactId>testng</artifactId>
+    		<version>6.14.3</version>
+    		<scope>test</scope>
+		</dependency>
+		
+		  <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>3.141.59</version>
+      </dependency>
+   
+   <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+		<dependency>
+    		<groupId>org.testng</groupId>
+    		<artifactId>testng</artifactId>
+    		<version>6.14.3</version>
+    		<scope>compile</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.surefire/surefire-booter -->
+        <dependency>
+             <groupId>org.apache.maven.surefire</groupId>
+             <artifactId>surefire-booter</artifactId>
+             <version>2.22.0</version>
+         </dependency>
+		 <dependency> <groupId>com.apple</groupId> <artifactId>AppleJavaExtensions</artifactId> <version>1.4</version> 
+		 </dependency>
+ 
+  </dependencies>
+ </project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Kindly be informed to you that on the day of the assignment as well i have clearly mentioned that the issue is with the configurations.
+
+Here in the windows machine, you are using jdk 14 but in the Linux environment you are using jdk 8 which causes the issue.
+So here are the commands in Linux that will help you to install jdk 14 and chrome driver and browser. So that you can execute.
+For downloading the jdk 14:
+sudo wget https://download.java.net/java/GA/jdk14.0.2/205943a0976c4ed48cb16f1043c5c647/12/GPL/openjdk-14.0.2_linux-x64_bin.tar.gz
+sudo tar zxf openjdk-14.0.2_linux-x64_bin.tar.gz
+sudo mv ./jdk-14.0.2/ /opt/
+sudo tee /etc/profile.d/jdk14env.sh <<EOF
+export JAVA_HOME=/opt/jdk-14.0.2
+export PATH=\$PATH:\$JAVA_HOME/bin
+EOF
+source /etc/profile.d/jdk14env.sh
+java --version
+Downloading chrome and its driver
+sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ./google-chrome-stable_current_amd64.deb
+sudo wget https://chromedriver.storage.googleapis.com/84.0.4147.30/chromedriver_linux64.zip
+unzip chromedriver_linux64.zip
+For converting the jar file, Modify the driver location with ubuntu machine driver location and run as java application.
+
+Once executed then you can go ahead and conevert it into a runnable JAR file.
+Right click on project>>export>>java>>runnable JAR file.
+and click on next and make sure the launch configuration is same as your code and package all required libraries into generated JAR.Then click on finish.
+
+Kindly check the location whether it is created or not. Once you add and click on finish will generate a jar file.
+
+Copy to the instance and the run it that will work for you.
+For reference:
+
+
+This is how you will implement the complete assignment. 
+Note: every step is explained here, Now you need to write the code of test case. Everything will work for you.
